@@ -116,17 +116,17 @@ controller:
   
   ## Server metrics controller configuration
   metrics:
-    enabled: false
+    enabled: true
     service:
       annotations: {}
       labels: {}
       servicePort: 8082
     serviceMonitor:
-      enabled: false
-    #   selector:
-    #     prometheus: kube-prometheus
-    #   namespace: monitoring
-    #   additionalLabels: {}
+      enabled: true
+      namespace: argocd
+      additionalLabels:
+        release: po
+        
     rules:
       enabled: false
       spec: []
@@ -411,27 +411,26 @@ server:
   
   ## Server metrics service configuration
   metrics:
-    enabled: false
+    enabled: true
     service:
       annotations: {}
       labels: {}
       servicePort: 8083
     serviceMonitor:
-      enabled: false
-    #   selector:
-    #     prometheus: kube-prometheus
-    #   namespace: monitoring
-    #   additionalLabels: {}
-  
+      enabled: true
+      namespace: argocd
+      additionalLabels:
+        release: po
+
   serviceAccount:
     create: true
     name: argocd-server
-  
+
   ingress:
     enabled: false
     annotations: {}
     labels: {}
-    
+  
     ## Argo Ingress.
     ## Hostnames must be provided if Ingress is enabled.
     ## Secrets must be manually created in the namespace
@@ -787,11 +786,10 @@ repoServer:
       labels: {}
       servicePort: 8084
     serviceMonitor:
-      enabled: false
-    #   selector:
-    #     prometheus: kube-prometheus
-    #   namespace: monitoring
-    #   additionalLabels: {}
+      enabled: true
+      namespace: argocd
+      additionalLabels:
+        release: po
   
   ## Repo server service account
   ## If create is set to true, make sure to uncomment the name and update the rbac section below
