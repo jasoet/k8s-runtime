@@ -1,4 +1,4 @@
 variable "kubeconfig_context" {
-  type = string
+  type    = string
   default = "minikube"
 }
